@@ -212,7 +212,7 @@ def main() -> None:
         print(f"Error: {err}", file=sys.stderr)
         raise SystemExit(1) from err
     print(
-        "filesystem-mcp 起動: 許可フォルダ = "
+        "filesystem-mcp started: allowed directories = "
         + ", ".join(str(d) for d in dirs),
         file=sys.stderr,
     )

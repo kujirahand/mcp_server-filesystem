@@ -2,7 +2,7 @@
 
 An MCP server (Python) that can only read and write files inside folders you explicitly allow.
 
-[→日本語版はこちら (README-ja.md)](README-ja.md)
+[→日本語版はこちら (README-ja.md)](https://github.com/kujirahand/mcp_server-filesystem/blob/main/README-ja.md)
 
 - Uses the Python MCP SDK (`mcp` v2), following the latest MCP specification
 - Communicates over stdio

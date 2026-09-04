@@ -29,7 +29,7 @@ def set_allowed_dirs(paths: list[str]) -> list[Path]:
     for arg in paths:
         path = Path(arg).expanduser()
         if not path.is_dir():
-            raise ValueError(f"フォルダではないか、開けません: {path}")
+            raise ValueError(f"Not a directory or cannot be opened: {path}")
         dirs.append(path.resolve())
     ALLOWED_DIRS[:] = dirs
     return dirs
@@ -53,10 +53,10 @@ def resolve_allowed_path(target: str) -> Path:
     else:
         parent = path.parent.expanduser()
         if not parent.is_dir():
-            raise ToolError(f"親フォルダが見つかりません: {parent}")
+            raise ToolError(f"Parent directory not found: {parent}")
         real = parent.resolve() / path.name
     if not any(_is_inside(allowed, real) for allowed in ALLOWED_DIRS):
-        raise ToolError(f"許可されていないパスです: {path}")
+        raise ToolError(f"Path not allowed: {path}")
     return real
 
 
@@ -134,7 +134,7 @@ def list_directory(
 ) -> DirectoryListing:
     target = resolve_allowed_path(path)
     if not target.is_dir():
-        raise ToolError(f"フォルダではありません: {target}")
+        raise ToolError(f"Not a directory: {target}")
     entries: list[DirectoryEntry] = []
     for child in sorted(target.iterdir(), key=lambda p: p.name):
         if child.is_dir():
@@ -161,7 +161,7 @@ def read_file(
 ) -> FileContent:
     target = resolve_allowed_path(path)
     if target.is_dir():
-        raise ToolError(f"フォルダは読み込めません: {target}")
+        raise ToolError(f"Cannot read a directory: {target}")
     content = target.read_text(encoding=encoding)
     return FileContent(path=str(target), content=content, size=target.stat().st_size)
 
@@ -202,14 +202,14 @@ def main() -> None:
     args = sys.argv[1:]
     if not args:
         print(
-            "使い方: filesystem-mcp <許可フォルダ> [<許可フォルダ> ...]",
+            "Usage: filesystem-mcp <allowed-directory> [<allowed-directory> ...]",
             file=sys.stderr,
         )
         raise SystemExit(1)
     try:
         dirs = set_allowed_dirs(args)
     except ValueError as err:
-        print(f"エラー: {err}", file=sys.stderr)
+        print(f"Error: {err}", file=sys.stderr)
         raise SystemExit(1) from err
     print(
         "filesystem-mcp 起動: 許可フォルダ = "

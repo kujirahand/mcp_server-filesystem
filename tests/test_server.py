@@ -84,7 +84,7 @@ async def test_denied_directory_is_not_readable(workspace):
             "read_file", {"path": str(denied / "secret.txt")}
         )
         assert result.is_error
-        assert "許可されていないパス" in result.content[0].text
+        assert "Path not allowed" in result.content[0].text
 
 
 async def test_parent_traversal_is_blocked(workspace):

@@ -161,7 +161,7 @@ npx -y @modelcontextprotocol/inspector --cli uv run filesystem-mcp ~/Documents/w
 ```
 
 許可フォルダの外を指定すると `"isError": true` と
-`許可されていないパスです` というメッセージが返ります。
+`Path not allowed` というメッセージが返ります(エラーメッセージは英語で出力されます)。
 
 ## テスト
 

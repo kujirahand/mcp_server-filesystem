@@ -1,14 +1,33 @@
 [project]
-name = "mcp-server-filesystem"
+name = "filesystem-mcp"
 version = "1.0.0"
 description = "許可したフォルダだけを読み書きできるファイルシステムMCPサーバー"
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
-dependencies = ["mcp>=1.20.0"]
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "kujirahand", email = "kujirahand@gmail.com" }]
+keywords = ["mcp", "model-context-protocol", "filesystem", "llm", "claude"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Natural Language :: Japanese",
+]
+dependencies = ["mcp>=2.0.0"]
+
+[project.urls]
+Homepage = "https://github.com/kujirahand/mcp_server-filesystem"
+Repository = "https://github.com/kujirahand/mcp_server-filesystem"
+Issues = "https://github.com/kujirahand/mcp_server-filesystem/issues"
 
 [project.scripts]
-mcp-server-filesystem = "mcp_server_filesystem.server:main"
+filesystem-mcp = "filesystem_mcp.server:main"
 
 [build-system]
 requires = ["hatchling"]
@@ -21,4 +40,7 @@ dev = ["pytest>=8.0", "pytest-asyncio>=0.24"]
 asyncio_mode = "auto"
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/mcp_server_filesystem"]
+packages = ["src/filesystem_mcp"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src", "tests", "README.md", "LICENSE"]

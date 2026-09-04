@@ -3,7 +3,7 @@
 起動時の引数で指定したフォルダ(許可フォルダ)の中だけを読み書きできる。
 
 使い方:
-    python -m mcp_server_filesystem /path/to/dir1 /path/to/dir2
+    python -m filesystem_mcp /path/to/dir1 /path/to/dir2
 """
 
 from __future__ import annotations
@@ -103,7 +103,7 @@ class WriteResult(BaseModel):
 # --- MCPサーバー ----------------------------------------------------------
 
 mcp = MCPServer(
-    name="mcp-server-filesystem",
+    name="filesystem-mcp",
     title="ファイルシステム",
     version="1.0.0",
     instructions=(
@@ -202,7 +202,7 @@ def main() -> None:
     args = sys.argv[1:]
     if not args:
         print(
-            "使い方: mcp-server-filesystem <許可フォルダ> [<許可フォルダ> ...]",
+            "使い方: filesystem-mcp <許可フォルダ> [<許可フォルダ> ...]",
             file=sys.stderr,
         )
         raise SystemExit(1)
@@ -212,7 +212,7 @@ def main() -> None:
         print(f"エラー: {err}", file=sys.stderr)
         raise SystemExit(1) from err
     print(
-        "mcp-server-filesystem 起動: 許可フォルダ = "
+        "filesystem-mcp 起動: 許可フォルダ = "
         + ", ".join(str(d) for d in dirs),
         file=sys.stderr,
     )

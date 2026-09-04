@@ -16,7 +16,7 @@ async def connect(allowed: Path):
     """許可フォルダを1つ指定してサーバーを起動し、接続済みセッションを返す。"""
     params = StdioServerParameters(
         command=sys.executable,
-        args=["-m", "mcp_server_filesystem", str(allowed)],
+        args=["-m", "filesystem_mcp", str(allowed)],
     )
     async with stdio_client(params) as (read, write):
         async with ClientSession(read, write) as session:

@@ -1,0 +1,24 @@
+[project]
+name = "mcp-server-filesystem"
+version = "1.0.0"
+description = "許可したフォルダだけを読み書きできるファイルシステムMCPサーバー"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = ["mcp>=1.20.0"]
+
+[project.scripts]
+mcp-server-filesystem = "mcp_server_filesystem.server:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = ["pytest>=8.0", "pytest-asyncio>=0.24"]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mcp_server_filesystem"]

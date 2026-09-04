@@ -1,12 +1,12 @@
 [project]
 name = "filesystem-mcp"
-version = "1.0.1"
-description = "許可したフォルダだけを読み書きできるファイルシステムMCPサーバー"
+version = "1.0.2"
+description = "An MCP server that can only read and write files inside allowed folders"
 readme = "README.md"
 requires-python = ">=3.10"
 license = "MIT"
 license-files = ["LICENSE"]
-authors = [{ name = "kujirahand", email = "kujirahand@gmail.com" }]
+authors = [{ name = "kujirahand", email = "web@kujirahand.com" }]
 keywords = ["mcp", "model-context-protocol", "filesystem", "llm", "claude"]
 classifiers = [
     "Development Status :: 4 - Beta",
